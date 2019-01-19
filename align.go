@@ -1,10 +1,13 @@
 package align
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 // Center will center text within a given length of space
 func Center(w int, s string) string {
-	return fmt.Sprintf("%[1]*s", -w, fmt.Sprintf("%[1]*s", (w+len(s))/2, s))
+	return fmt.Sprintf("%[1]*s", -w, fmt.Sprintf("%[1]*s", (w+utf8.RuneCountInString(s))/2, s))
 }
 
 // Right will right-align text within a given length of space
